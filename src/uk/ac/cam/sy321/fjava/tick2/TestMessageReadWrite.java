@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 class TestMessageReadWrite {
@@ -19,11 +20,11 @@ class TestMessageReadWrite {
 			out.close();
 			return true;
 		}
-		catch (Exception e){
+		catch (IOException e){
 			return false;
 		}
 	}
-	static String readMessage(String location) {
+	static String readMessage(String location){
 		try{
 			if(location.matches("^http://.*")){
 				// HTTP
@@ -42,25 +43,29 @@ class TestMessageReadWrite {
 				return msg.getMessage();				
 			}
 		}
-		catch (Exception e){
+		catch(MalformedURLException e){
+			return null;
+		} catch (ClassNotFoundException e) {
+			return null;
+		} catch (IOException e) {
 			return null;
 		}
 	}
 	public static void main(String args[]) throws IOException {
 		boolean result = true;
 		for (int i = 0; i < 100; i++){
-		File temp = File.createTempFile("temp", Long.toString(System.nanoTime()));
-		result = result && testMessage("someMessage" + i, temp.getCanonicalPath());
-		temp.delete();
+			File temp = File.createTempFile("temp", Long.toString(System.nanoTime()));
+			result = result && testMessage("someMessage" + i, temp.getCanonicalPath());
+			temp.delete();
 		}
 		System.out.println(result);
 	}
-	
+
 	public static boolean testMessage(String msg, String filename){
 		if(writeMessage(msg, filename)){
 			return readMessage(filename).equals(msg);
 		}
 		return false;
-		
+
 	}
 }
