@@ -17,7 +17,6 @@ public class ChatServer {
 			port = Integer.parseInt(args[0]);
 		}
 		catch (NumberFormatException| ArrayIndexOutOfBoundsException e) {
-			// Catching an Error - non-typical but useful.
 			System.out.println("Usage: java ChatServer <port>");
 			return;
 		}
