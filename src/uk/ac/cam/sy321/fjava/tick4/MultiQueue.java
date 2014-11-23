@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class MultiQueue<T> {
 	private Set<MessageQueue<T>> outputs = new HashSet<MessageQueue<T>>(10);
-	
+
 	public synchronized void register(MessageQueue<T> q) {
 		outputs.add(q);
 	}

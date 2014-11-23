@@ -13,14 +13,11 @@ import uk.ac.cam.cl.fjava.messages.Message;
 import uk.ac.cam.cl.fjava.messages.RelayMessage;
 import uk.ac.cam.cl.fjava.messages.StatusMessage;
 
-//TODO: 5.
-
 public class ClientHandler {
 	private Socket socket;
 	private MultiQueue<Message> multiQueue;
 	private String nickname;
 	private MessageQueue<Message> clientMessages;
-	//TODO: possibly other fields here
 
 	public ClientHandler(Socket s, MultiQueue<Message> q) {
 		// BEGIN Initialisation 
@@ -105,6 +102,5 @@ public class ClientHandler {
 		// END output thread
 
 	}
-	//TODO: Other code here as necessary... or not?
 }
 

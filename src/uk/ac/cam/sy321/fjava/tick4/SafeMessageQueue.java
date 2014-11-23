@@ -24,7 +24,7 @@ public class SafeMessageQueue<T> implements MessageQueue<T> {
 		while(first == null) //use a loop to block thread until data is available
 			try {
 				this.wait();
-				}
+			}
 		catch(InterruptedException ie) {}
 		T val = first.val;
 		first = first.next;

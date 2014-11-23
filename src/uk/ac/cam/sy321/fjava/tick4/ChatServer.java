@@ -11,7 +11,7 @@ public class ChatServer {
 	@SuppressWarnings("resource")
 	public static void main(String args[]) {
 		int port;
-		
+
 		// BEGIN Command line parsing
 		try{
 			port = Integer.parseInt(args[0]);
